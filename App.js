@@ -1,6 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import type {Node} from 'react';
 import CreateUser from './components/create-user';
+import Users from './components/users';
+import AdminMenu from './components/admin-menu';
+import UserMenu from './components/user-menu';
+import User from './components/user';
 import {
   SafeAreaView,
   ScrollView,
@@ -12,55 +16,41 @@ import {
   Button,
 } from 'react-native';
 import { db } from './firebase';
-import UserMenu from './components/create-user';
-
-function addUser(cusername) {
-  db.collection("users").doc(cusername).set({
-    username: cusername + "@fdm.co.uk",
-    password: "Lovelace123",
-})
-}
-
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 const App: () => Node = () => {
-  const [users, setUsers] = useState([]);
-  const ref = db.collection('users');
 
-  useEffect(() => {
-    const ref = db.collection('users');
-    ref.onSnapshot((query) => {
-        const objs = [];
-        query.forEach((doc) => {
-          objs.push({
-            id: doc.id,
-            ...doc.data(),
-          });
-        });
-        setUsers(objs);
-      });
-  }, [])
-
-  
+  const Stack = createStackNavigator();  
 
 
   return (
-    <SafeAreaView >
-      <StatusBar  />
-      <View>
-        <Text>Pow</Text>
-        {users.map((obj) => (
-        <View id={obj.id}>
-          <Text>Username: {obj.username}, Password: {obj.password}</Text>
-        </View>
-        
-          ))}
-          <Button title="press to add user" onPress={() => addUser("louie")} />
-      </View>
-      <CreateUser />
-    </SafeAreaView>
+
+        <NavigationContainer style={styles.container}>
+          <Stack.Navigator initialRouteName="Admin Menu">
+            <Stack.Screen  name="Admin Menu" component={AdminMenu} /> 
+            <Stack.Screen name="User Menu" component={UserMenu} />
+            <Stack.Screen name="Users" component={Users} />
+            <Stack.Screen name="User" component={User} />
+            <Stack.Screen name="Create User" component={CreateUser} />
+          </Stack.Navigator>
+        </NavigationContainer>
+
+
+      
+
   );
 };
 
 
 
 export default App;
+
+
+const styles = StyleSheet.create({
+  container: {
+    marginLeft: 15,
+    marginRight: 15,
+  }
+})

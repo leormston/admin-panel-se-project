@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { SafeAreaView, StyleSheet, Text, View, Button, TextInput, TouchableOpacity} from 'react-native';
 import { db } from '../firebase';
-
 function addUser(uusername, ppassword, ffirstname, llastname) {
     db.collection("users").doc(uusername).set({
       username: uusername,
       password: ppassword,
       firstname: ffirstname,
-      lastname: llastname
+      lastname: llastname,
+      created: Date().substr(4, 20)
   })
   }
 
@@ -37,16 +37,13 @@ class CreateUser extends Component{
     handleLastName = (text) => {
         
     this.setState({ lastname: text })
-    console.log(this.lastname);
     }
 
-    login = (first, last) => {
-        alert('first: ' + first + ' last: ' + last)
-     }
+
     render() {
     return(
-        <View>
-            <Text>CREATE USER</Text>
+        <View style={styles.container}>
+            <Text style={styles.header}>CREATE USER</Text>
             <TextInput
             placeholder="Username" 
             
@@ -69,4 +66,14 @@ class CreateUser extends Component{
 }
 
 export default CreateUser;
-
+const styles = StyleSheet.create({
+    header: {
+        fontSize: 50,
+        fontWeight: "700",
+        alignItems: 'center',
+    },
+    container: {
+        marginLeft: 15,
+        marginRight: 15,
+      }
+})
