@@ -11,28 +11,28 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 
-const AdminMenu = ({navigation}) => {
+const BugMenu = ({navigation}) => {
 
 
 
 
     return(
         <View style={styles.container}>
-            <Text style={styles.header}>ADMIN MENU</Text>
             <TouchableOpacity 
             style={styles.TouchableOpacity}
-            onPress={() => navigation.navigate('User Menu')}>
-                <Text style={styles.buttontext}>Manage Users</Text>
+            onPress={() => navigation.navigate('Bugs')}>
+                <Text style={styles.buttontext}>View Bugs</Text>
             </TouchableOpacity>
 
             <TouchableOpacity 
             style={styles.TouchableOpacity}
-            onPress={() => navigation.navigate('Bug Menu')}>
-                <Text style={styles.buttontext}>Reported Bugs</Text>
+            onPress={() => navigation.navigate('Report Bug')}>
+                <Text style={styles.buttontext}>Create Bug</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.TouchableOpacity}>
-                <Text style={styles.buttontext}>Support Tickets</Text>
-            </TouchableOpacity>
+
+
+            
+
 
 
         </View>
@@ -40,7 +40,7 @@ const AdminMenu = ({navigation}) => {
    
 }
 
-export default AdminMenu;
+export default BugMenu;
 
 const styles = StyleSheet.create({
     header: {

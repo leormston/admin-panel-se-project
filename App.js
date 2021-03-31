@@ -5,6 +5,10 @@ import Users from './components/users';
 import AdminMenu from './components/admin-menu';
 import UserMenu from './components/user-menu';
 import User from './components/user';
+import Bugs from './components/bugs';
+import Bug from './components/bug';
+import BugMenu from './components/bug-menu';
+import CreateBug from './components/create-bug.js';
 import {
   SafeAreaView,
   ScrollView,
@@ -34,6 +38,10 @@ const App: () => Node = () => {
             <Stack.Screen name="Users" component={Users} />
             <Stack.Screen name="User" component={User} />
             <Stack.Screen name="Create User" component={CreateUser} />
+            <Stack.Screen name="Bugs" component={Bugs} />
+            <Stack.Screen name="Bug" component={Bug} />
+            <Stack.Screen name="Bug Menu" component={BugMenu} />
+            <Stack.Screen name="Report Bug" component={CreateBug} />
           </Stack.Navigator>
         </NavigationContainer>
 

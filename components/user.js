@@ -15,6 +15,12 @@ function updateUser(uusername, ppassword, ffirstname, llastname) {
   })
   }
 
+function deleteUser(id, {navigation}) {
+    const user = db.collection('users').doc(id);
+    user.delete();
+    navigation.navigate("Users");
+}
+
 const User = ({route, navigation}) => {
     var user = route.params.users;
   
@@ -51,7 +57,10 @@ const User = ({route, navigation}) => {
             onPress={() => updateUser(user.username, enteredPassword || user.password, enteredFirstname || user.firstname, enteredLastname || user.lastname)}/>
             <Text>Once this is done it cannot be undone</Text>
             <Button  
-            title="Delete User"/>
+            style ={{marginTop: 20, marginBottom: 20}}
+            color = "#FF4942"
+            title="Delete User"
+            onPress= {() => deleteUser(user.id, {navigation})}/>
             
     
 

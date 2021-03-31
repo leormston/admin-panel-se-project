@@ -2,15 +2,14 @@ import React, {useState, useEffect, Component} from 'react';
 import { ScrollView, SafeAreaView, StyleSheet, Text, View, Button, TextInput, TouchableOpacity, List} from 'react-native';
 import { db } from '../firebase';
 import type {Node} from 'react';
-import User from './user';
 
 
 
 
-const Users = ({navigation}) => {
-    const [users, setUsers] = useState([]);
+const Bugs = ({navigation}) => {
+    const [bugs, setBugs] = useState([]);
     useEffect(() => {
-        const ref = db.collection('users');
+        const ref = db.collection('bugs');
         ref.onSnapshot((query) => {
             const objs = [];
             query.forEach((doc) => {
@@ -19,7 +18,7 @@ const Users = ({navigation}) => {
                 ...doc.data(),
             });
             });
-            setUsers(objs);
+            setBugs(objs);
         });
     }, [])
     
@@ -28,17 +27,17 @@ const Users = ({navigation}) => {
 
     return(
         <ScrollView style={styles.container}>
-            
+            <Text style={styles.header}>VIEW BUGS</Text>     
             <View style={styles.table}>
-            <Text style={styles.username}>Username</Text>
-            <Text style={styles.datecreated}>Date Created</Text>
+            <Text style={styles.username}>Bug Title</Text>
+            <Text style={styles.datecreated}>Date Reported</Text>
                 <Text style={styles.datecreated}>View</Text>
             </View>
-            {users.map((users) => (
-            <View style={styles.table} key={users.id}>
+            {bugs.map((bugs) => (
+            <View style={styles.table} key={bugs.id}>
            
-                <Text style={styles.username}>{users.username}</Text> 
-                <Text style={styles.datecreated}>{users.created}</Text> 
+                <Text style={styles.username}>{bugs.Title}</Text> 
+                <Text style={styles.datecreated}>{bugs.Date}</Text> 
 
 
                 <TouchableOpacity 
@@ -46,7 +45,7 @@ const Users = ({navigation}) => {
                 style={styles.button}
 
                 onPress={() => {
-                    navigation.navigate('User',{users});
+                    navigation.navigate('Bug',{bugs});
                     }}
                     >
 
@@ -56,15 +55,11 @@ const Users = ({navigation}) => {
 
             </View>
             ))}
-            
-            
-            
-
         </ScrollView>
     )
 }
 
-export default Users;
+export default Bugs;
 const styles = StyleSheet.create({
 
     container: {
