@@ -11,38 +11,36 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 
-const AdminMenu = ({navigation}) => {
+const TicketMenu = ({navigation}) => {
 
 
 
 
     return(
         <View style={styles.container}>
-            <Text style={styles.header}>ADMIN MENU</Text>
-            <TouchableOpacity 
-            style={styles.TouchableOpacity}
-            onPress={() => navigation.navigate('User Menu')}>
-                <Text style={styles.buttontext}>Manage Users</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity 
-            style={styles.TouchableOpacity}
-            onPress={() => navigation.navigate('Bug Menu')}>
-                <Text style={styles.buttontext}>Reported Bugs</Text>
-            </TouchableOpacity>
             <TouchableOpacity
             style={styles.TouchableOpacity}
-            onPress={() => navigation.navigate('Ticket Menu')}>
-                <Text style={styles.buttontext}>Reported Tickets</Text>
+            onPress={() => navigation.navigate('Tickets')}>
+                <Text style={styles.buttontext}>View Tickets</Text>
             </TouchableOpacity>
+
+            <TouchableOpacity
+            style={styles.TouchableOpacity}
+            onPress={() => navigation.navigate('Create Ticket')}>
+                <Text style={styles.buttontext}>Create a Ticket</Text>
+            </TouchableOpacity>
+
+
+
+
 
 
         </View>
     )
-   
+
 }
 
-export default AdminMenu;
+export default TicketMenu;
 
 const styles = StyleSheet.create({
     header: {

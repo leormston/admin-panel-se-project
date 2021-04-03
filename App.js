@@ -9,6 +9,10 @@ import Bugs from './components/bugs';
 import Bug from './components/bug';
 import BugMenu from './components/bug-menu';
 import CreateBug from './components/create-bug.js';
+import TicketMenu from './components/ticket-main.js';
+import CreateTicket from './components/create-ticket.js';
+import Tickets from './components/tickets.js';
+import singleTicket from './components/singleTicket.js';
 import {
   SafeAreaView,
   ScrollView,
@@ -42,6 +46,10 @@ const App: () => Node = () => {
             <Stack.Screen name="Bug" component={Bug} />
             <Stack.Screen name="Bug Menu" component={BugMenu} />
             <Stack.Screen name="Report Bug" component={CreateBug} />
+            <Stack.Screen name="Ticket Menu" component={TicketMenu} />
+            <Stack.Screen name="Create Ticket" component={CreateTicket} />
+            <Stack.Screen name="Tickets" component={Tickets} />
+            <Stack.Screen name="Ticket" component={singleTicket} />
           </Stack.Navigator>
         </NavigationContainer>
 

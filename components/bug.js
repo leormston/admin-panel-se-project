@@ -17,12 +17,11 @@ function deleteBug(id, {navigation}) {
     const bug = db.collection('bugs').doc(id);
     bug.delete();
     navigation.navigate("Bugs");
-}
+} 
 
 const Bug = ({route, navigation}) => {
     var bugs = route.params.bugs;
-  
-
+    
     const [enteredNotes, setNotes] = useState('');
     const [iswitchValue, setiSwitchValue] = useState(bugs.Important);
     const [rswitchValue, setrSwitchValue] = useState(bugs.Resolved);
@@ -86,7 +85,7 @@ const Bug = ({route, navigation}) => {
             </View>
 
             
-            
+             
             
 
         </ScrollView>
